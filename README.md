@@ -1,2 +1,2 @@
 # IoTSemantic
-Converts JSON to RDF
+B. Converts JSON to RDF

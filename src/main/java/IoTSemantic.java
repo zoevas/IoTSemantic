@@ -48,7 +48,7 @@ public class IoTSemantic {
 	public IoTSemantic(RepositoryConnection connection) {
 		this.connection = connection;
 	}
-    
+	
     /**
      * It reads Activity_Turtle.owl file containing the ontology statements for the activities
      * produced by the sensor house and commits them to a GraphDB repository.

@@ -45,9 +45,9 @@ public class IoTSemantic {
 
 	private RepositoryConnection connection;
 
-    public IoTSemantic(RepositoryConnection connection) {
-        this.connection = connection;
-    }
+	public IoTSemantic(RepositoryConnection connection) {
+		this.connection = connection;
+	}
     
     /**
      * It reads Activity_Turtle.owl file containing the ontology statements for the activities
@@ -56,15 +56,14 @@ public class IoTSemantic {
      * @return Nothing.
      * @exception RDFParseException, RepositoryException, IOException
      */
-    public void loadOntology() throws RDFParseException, RepositoryException, IOException {
-    	System.out.println("# Loading ontology ...");
+	public void loadOntology() throws RDFParseException, RepositoryException, IOException {
+		System.out.println("# Loading ontology ...");
     	
-    	// When adding data we need to start a transaction
-        connection.begin();
+		// When adding data we need to start a transaction
+		connection.begin();
 		
-        connection.add(IoTSemantic.class.getResourceAsStream("/Activity_Ontology.owl"), "urn:base", RDFFormat.TURTLE);
-
-    }
+		connection.add(IoTSemantic.class.getResourceAsStream("/Activity_Ontology.owl"), "urn:base", RDFFormat.TURTLE);
+	}
     
     /**
      * It reads example_observation.json file which contains the sensor measurements in json format
@@ -76,86 +75,83 @@ public class IoTSemantic {
     public void loadData() throws IOException, URISyntaxException {
     	System.out.println("# Loading data ...");
     	JsonReader reader = new JsonReader(new FileReader("C:\\example_observations.json"));
-		JsonElement jsonElement = new JsonParser().parse(reader);
+    	JsonElement jsonElement = new JsonParser().parse(reader);
 
-		ModelBuilder builder = new ModelBuilder();
-		builder.setNamespace("a", SENSOR.NAMESPACE);
+    	ModelBuilder builder = new ModelBuilder();
+    	builder.setNamespace("a", SENSOR.NAMESPACE);
 
-		ValueFactory factory = SimpleValueFactory.getInstance();
+    	ValueFactory factory = SimpleValueFactory.getInstance();
 
-        JsonObject jsonObject = jsonElement.getAsJsonObject();
-        jsonObject = jsonObject.getAsJsonObject("model");
-        JsonArray jActivitiesArray = jsonObject.getAsJsonArray("activities");
+    	JsonObject jsonObject = jsonElement.getAsJsonObject();
+    	jsonObject = jsonObject.getAsJsonObject("model");
+    	JsonArray jActivitiesArray = jsonObject.getAsJsonArray("activities");
         
-        for(int i = 0; i < jActivitiesArray.size(); i++) {
-        	jsonObject = jActivitiesArray.get(i).getAsJsonObject();        	
+    	for(int i = 0; i < jActivitiesArray.size(); i++) {
+    		jsonObject = jActivitiesArray.get(i).getAsJsonObject();        	
         	
-        	IRI activityIRI = factory.createIRI(SENSOR.NAMESPACE, "Activity_" + i);
-        	IRI elementIRI = factory.createIRI(SENSOR.NAMESPACE, "Element_" + i);
+    		IRI activityIRI = factory.createIRI(SENSOR.NAMESPACE, "Activity_" + i);
+    		IRI elementIRI = factory.createIRI(SENSOR.NAMESPACE, "Element_" + i);
         	
-        	
-        	builder.subject(activityIRI).add(RDF.TYPE, "a:Activity").add(SENSOR.HAS_ELEMENT,elementIRI);
-        	builder.subject(elementIRI).add(RDF.TYPE, "a:Element").add(SENSOR.HAS_STARTDATE,factory.createLiteral(jsonObject.get("start").getAsString(), XMLSchema.DATETIME))
+    		builder.subject(activityIRI).add(RDF.TYPE, "a:Activity").add(SENSOR.HAS_ELEMENT,elementIRI);
+    		builder.subject(elementIRI).add(RDF.TYPE, "a:Element").add(SENSOR.HAS_STARTDATE,factory.createLiteral(jsonObject.get("start").getAsString(), XMLSchema.DATETIME))
         															.add(SENSOR.HAS_ENDDATE,factory.createLiteral(jsonObject.get("end").getAsString(), XMLSchema.DATETIME))
         															.add(SENSOR.HAS_CONTENTSTRING,jsonObject.get("content").getAsString());
         	
 
-        	JsonArray jObservationsArray = jsonObject.getAsJsonArray("observations");
+    		JsonArray jObservationsArray = jsonObject.getAsJsonArray("observations");
         	
-        	IRI observationIRI = factory.createIRI(SENSOR.NAMESPACE, "Observation_" + i);
+    		IRI observationIRI = factory.createIRI(SENSOR.NAMESPACE, "Observation_" + i);
         	
-        	builder.subject(activityIRI).add(RDF.TYPE, "a:Activity").add(SENSOR.HAS_OBSERVATION, observationIRI);
-        	builder.subject(observationIRI).add(RDF.TYPE, "a:Observation");
+    		builder.subject(activityIRI).add(RDF.TYPE, "a:Activity").add(SENSOR.HAS_OBSERVATION, observationIRI);
+    		builder.subject(observationIRI).add(RDF.TYPE, "a:Observation");
         	
-        	for(int j = 0; j < jObservationsArray.size(); j++) {
-        		jsonObject = jObservationsArray.get(j).getAsJsonObject();
+    		for(int j = 0; j < jObservationsArray.size(); j++) {
+    			jsonObject = jObservationsArray.get(j).getAsJsonObject();
         		
-        		IRI observationElementIRI = factory.createIRI(SENSOR.NAMESPACE, "Element_" + i + "_" + j);
-        		builder.subject(observationIRI).add(SENSOR.HAS_ELEMENT, observationElementIRI);
-        		builder.subject(observationElementIRI).add(RDF.TYPE, "a:Element");
+    			IRI observationElementIRI = factory.createIRI(SENSOR.NAMESPACE, "Element_" + i + "_" + j);
+    			builder.subject(observationIRI).add(SENSOR.HAS_ELEMENT, observationElementIRI);
+    			builder.subject(observationElementIRI).add(RDF.TYPE, "a:Element");
         		
-        		builder.subject(observationElementIRI).add(SENSOR.HAS_STARTDATE,factory.createLiteral(jsonObject.get("start").getAsString(), XMLSchema.DATETIME))
-        										.add(SENSOR.HAS_ENDDATE,factory.createLiteral(jsonObject.get("end").getAsString(), XMLSchema.DATETIME))
+    			builder.subject(observationElementIRI).add(SENSOR.HAS_STARTDATE,factory.createLiteral(jsonObject.get("start").getAsString(), XMLSchema.DATETIME))
+    											.add(SENSOR.HAS_ENDDATE,factory.createLiteral(jsonObject.get("end").getAsString(), XMLSchema.DATETIME))
         										.add(SENSOR.HAS_CONTENTSTRING,jsonObject.get("content").getAsString());
         	}
         }
         
-        Model model = builder.build();
+    	Model model = builder.build();
         
-        //Printing statemets for debugging
-        for(Statement st: model) {
-			System.out.println(st);
-		}
+    	//Printing statements for debugging
+    	for(Statement st: model) {
+    		System.out.println(st);
+    	}
         
-        //Outputting the sensor measurements as rdf statements so as SpinActivityOntology app to use them
-        File file = new File("C:\\Activity_Statements.owl");
-        FileOutputStream out = new FileOutputStream(file);
-        try {
-        	Rio.write(model, out, RDFFormat.TURTLE);
-        }
-        finally {
+    	//Outputting the sensor measurements as rdf statements so as SpinActivityOntology app to use them
+    	File file = new File("C:\\Activity_Statements.owl");
+    	FileOutputStream out = new FileOutputStream(file);
+    	try {
+    		Rio.write(model, out, RDFFormat.TURTLE);
+    	}
+    	finally {
         	out.close();
-        }
-             
-        connection.add(model);
+    	}
+           
+    	connection.add(model);
     }
 	
 	public static void main(String[] args) throws RDFParseException, UnsupportedRDFormatException, IOException, URISyntaxException {
-		
+		// Abstract representation of a remote repository accessible over HTTP
+		HTTPRepository repository = new HTTPRepository("http://localhost:7200/repositories/activity");
 
-        // Abstract representation of a remote repository accessible over HTTP
-        HTTPRepository repository = new HTTPRepository("http://localhost:7200/repositories/activity");
+		// Separate connection to a repository
+		RepositoryConnection connection = repository.getConnection();
 
-        // Separate connection to a repository
-        RepositoryConnection connection = repository.getConnection();
+		// Clear the repository before we start
+		connection.clear();
 
-        // Clear the repository before we start
-        connection.clear();
-
-        IoTSemantic iotSemantic = new IoTSemantic(connection);
-        try {
-        	iotSemantic.loadOntology();
-        	iotSemantic.loadData();
+		IoTSemantic iotSemantic = new IoTSemantic(connection);
+		try {
+			iotSemantic.loadOntology();
+			iotSemantic.loadData();
         	// Committing the transaction persists the data
             connection.commit();
         } finally {

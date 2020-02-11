@@ -72,7 +72,7 @@ public class IoTSemantic {
      * @return Nothing.
      * @exception IOException, URISyntaxException
      */
-    public void loadData() throws IOException, URISyntaxException {
+	public void loadData() throws IOException, URISyntaxException {
     	System.out.println("# Loading data ...");
     	JsonReader reader = new JsonReader(new FileReader("C:\\example_observations.json"));
     	JsonElement jsonElement = new JsonParser().parse(reader);
@@ -115,8 +115,8 @@ public class IoTSemantic {
     			builder.subject(observationElementIRI).add(SENSOR.HAS_STARTDATE,factory.createLiteral(jsonObject.get("start").getAsString(), XMLSchema.DATETIME))
     											.add(SENSOR.HAS_ENDDATE,factory.createLiteral(jsonObject.get("end").getAsString(), XMLSchema.DATETIME))
         										.add(SENSOR.HAS_CONTENTSTRING,jsonObject.get("content").getAsString());
-        	}
-        }
+    		}
+    	}
         
     	Model model = builder.build();
         
@@ -132,13 +132,13 @@ public class IoTSemantic {
     		Rio.write(model, out, RDFFormat.TURTLE);
     	}
     	finally {
-        	out.close();
+    		out.close();
     	}
            
     	connection.add(model);
-    }
+	}
 	
-	public static void main(String[] args) throws RDFParseException, UnsupportedRDFormatException, IOException, URISyntaxException {
+    public static void main(String[] args) throws RDFParseException, UnsupportedRDFormatException, IOException, URISyntaxException {
 		// Abstract representation of a remote repository accessible over HTTP
 		HTTPRepository repository = new HTTPRepository("http://localhost:7200/repositories/activity");
 

@@ -120,7 +120,7 @@ public class IoTSemantic {
         
 		Model model = builder.build();
         
-    	//Printing statements for debugging
+		//Printing statements for debugging
 		for(Statement st: model) {
 			System.out.println(st);
 		}

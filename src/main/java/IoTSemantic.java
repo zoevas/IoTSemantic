@@ -115,8 +115,8 @@ public class IoTSemantic {
 				builder.subject(observationElementIRI).add(SENSOR.HAS_STARTDATE,factory.createLiteral(jsonObject.get("start").getAsString(), XMLSchema.DATETIME))
 														.add(SENSOR.HAS_ENDDATE,factory.createLiteral(jsonObject.get("end").getAsString(), XMLSchema.DATETIME))
 														.add(SENSOR.HAS_CONTENTSTRING,jsonObject.get("content").getAsString());
-    		}
-    	}
+			}
+		}
         
 		Model model = builder.build();
         

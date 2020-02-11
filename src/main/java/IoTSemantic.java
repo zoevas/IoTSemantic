@@ -153,10 +153,9 @@ public class IoTSemantic {
 			iotSemantic.loadOntology();
 			iotSemantic.loadData();
         	// Committing the transaction persists the data
-            connection.commit();
-        } finally {
+			connection.commit();
+		} finally {
         	connection.close();
-        }
-
+		}
 	}
 }

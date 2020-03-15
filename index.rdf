@@ -1,10 +1,15 @@
-<?xml version="1.0"?>
-<rdf:RDF
-xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-xmlns:si="https://www.w3schools.com/rdf/">
+<owlx:Annotation>
+  <owlx:Documentation>An example OWL ontology</owlx:Documentation> 
+</owlx:Annotation>
+<owlx:PriorVersion owlx:ontology="http://www.example.org/wine-112102.owl" /> 
+<owlx:Imports owlx:ontology="http://www.example.org/food.owl"/> 
+<owlx:Annotation>
+  <owlx:Label>Wine Ontology</owlx:Label> 
+</owlx:Annotation>
 
-<rdf:Description rdf:about="https://www.w3schools.com">
-  <si:title>W3Schools</si:title>
-  <si:author>Jan Egil Refsnes</si:author>
-</rdf:Description>
-</rdf:RDF>
+<owl:Ontology rdf:about="http://www.example.org/wine"> 
+  <rdfs:comment>An example OWL ontology</rdfs:comment>
+  <owl:priorVersion rdf:resource="http://www.example.org/wine-112102.owl"/> 
+  <owl:imports rdf:resource="http://www.example.org/food.owl"/> 
+  <rdfs:label>Wine Ontology</rdfs:label> 
+</owl:Ontology> 

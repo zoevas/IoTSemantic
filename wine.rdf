@@ -9,7 +9,7 @@
     xmlns:owl ="http://www.w3.org/2002/07/owl#"
     xmlns:rdf ="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-    owlx="http://www.w3.org/2003/05/owl-xml"
+    xmlns:owlx="http://www.w3.org/2003/05/owl-xml"
 > 
 
 <owlx:Annotation>

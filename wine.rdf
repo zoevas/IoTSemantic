@@ -1,9 +1,16 @@
+<!DOCTYPE owl [
+    <!ENTITY xsd  "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY vin  "http://www.example.org/wine#" >
+    <!ENTITY food "http://www.example.org/food#" > ]>
 <rdf:RDF 
-	rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-	rdfs="http://www.w3.org/2000/01/rdf-schema#" 
-	owl="http://www.w3.org/2002/07/owl#" 
-	dc="http://purl.org/dc/elements/1.1/"
-	owlx="http://www.w3.org/2003/05/owl-xml">
+    xmlns     ="http://www.example.org/wine#" 
+    xmlns:vin ="http://www.example.org/wine#"       
+    xmlns:food="http://www.example.org/food#"    
+    xmlns:owl ="http://www.w3.org/2002/07/owl#"
+    xmlns:rdf ="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    owlx="http://www.w3.org/2003/05/owl-xml"
+> 
 
 <owlx:Annotation>
   <owlx:Documentation>An example OWL ontology</owlx:Documentation> 

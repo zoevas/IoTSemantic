@@ -1,0 +1,15 @@
+<owlx:Annotation>
+  <owlx:Documentation>An example OWL ontology</owlx:Documentation> 
+</owlx:Annotation>
+<owlx:PriorVersion owlx:ontology="http://www.example.org/wine-112102.owl" /> 
+<owlx:Imports owlx:ontology="http://www.example.org/food.owl"/> 
+<owlx:Annotation>
+  <owlx:Label>Wine Ontology</owlx:Label> 
+</owlx:Annotation>
+
+<owl:Ontology rdf:about="http://www.example.org/wine"> 
+  <rdfs:comment>An example OWL ontology</rdfs:comment>
+  <owl:priorVersion rdf:resource="http://www.example.org/wine-112102.owl"/> 
+  <owl:imports rdf:resource="http://www.example.org/food.owl"/> 
+  <rdfs:label>Wine Ontology</rdfs:label> 
+</owl:Ontology> 

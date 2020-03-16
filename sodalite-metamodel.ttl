@@ -16,7 +16,7 @@
   owl:imports <http://www.loa-cnr.it/ontologies/DUL.owl> ;
   owl:imports <http://www.w3.org/2006/time> ;
   owl:versionInfo "Created with TopBraid Composer" ;
-  dc:title       "SODALITE METAMODEL ONTOLOGY";
+  dc:title "SODALITE METAMODEL ONTOLOGY";
 .
 :AbstractApplicationDeployment
   rdf:type owl:Class ;

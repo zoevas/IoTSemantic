@@ -18,8 +18,8 @@
   owl:versionInfo "Created with TopBraid Composer" ;
   dc:date "2019-02-01" ;
   dc:creator "George Meditskos" ;
-  dc:contributor "***";
-  dc:description "sodalite metamodel description";
+  dc:contributor "***" ;
+  dc:description "sodalite metamodel description" ;
   dc:title "SODALITE METAMODEL ONTOLOGY".
 
 :AbstractApplicationDeployment

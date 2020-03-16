@@ -16,8 +16,8 @@
   owl:imports <http://www.loa-cnr.it/ontologies/DUL.owl> ;
   owl:imports <http://www.w3.org/2006/time> ;
   owl:versionInfo "Created with TopBraid Composer" ;
-  dc:date "2019-02-01";
-  dc:creator "George Meditskos";
+  dc:date "2019-02-01" ;
+  dc:creator "George Meditskos" ;
   dc:title "SODALITE METAMODEL ONTOLOGY".
 
 :AbstractApplicationDeployment

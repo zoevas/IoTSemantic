@@ -1696,11 +1696,13 @@ DUL:hasParameter
 :boolean
   rdf:type owl:Class ;
   rdfs:subClassOf :DataType ;
+  rdfs:comment "xxxxxxx"
 .
 :capabilities
   rdf:type owl:ObjectProperty ;
   rdfs:range :Capability ;
   rdfs:subPropertyOf soda:specification ;
+  rdfs:comment "xxxxxxx"
 .
 :capability
   rdf:type rdf:Property ;

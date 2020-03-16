@@ -33,13 +33,13 @@ DUL:hasParameter
 :Attribute
   rdf:type owl:Class ;
   rdfs:subClassOf :Feature ;
+  rdfs:comment "xxxxxxx"
 .
 :Attribute_1
   rdf:type :Attribute ;
   dcterms:description "A unique identifier of the realized instance of a Node Template that derives from any TOSCA normative type" ;
   DUL:classifies :tosca_id ;
   DUL:hasParameter :SodaliteParameter_6 ;
-  rdfs:comment "xxxxxxx"
 .
 :Attribute_10
   rdf:type :Attribute ;
@@ -47,7 +47,6 @@ DUL:hasParameter
   DUL:classifies :ports ;
   DUL:hasParameter :Parameter_6 ;
   DUL:hasParameter :SodaliteParameter_12 ;
-  rdfs:comment "xxxxxxx"
 .
 :Attribute_11
   rdf:type :Attribute ;

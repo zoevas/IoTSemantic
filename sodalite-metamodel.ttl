@@ -20,6 +20,7 @@
   dc:creator "George Meditskos" ;
   dc:contributor "***" ;
   dc:description "sodalite metamodel description" ;
+  rdfs:comment "aaaaaaaa" ;
   dc:title "SODALITE METAMODEL ONTOLOGY".
 
 :AbstractApplicationDeployment
